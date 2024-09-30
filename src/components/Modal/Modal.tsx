@@ -97,25 +97,6 @@ const Modal = ({
    );
 };
 
-const showModal = (props: Props) => {
-   const container = createContainerDom();
-   const root = createRoot(container);
-
-   return root.render(
-      <Modal
-         {...props}
-         onOk={() => {
-            props.onOk?.();
-            root.unmount();
-         }}
-         onCancel={() => {
-            props.onCancel?.();
-            root.unmount();
-         }}
-      />,
-   );
-};
-
 /* ------------------ Modal Methods ------------------ */
 /* Methods Type: confirm, warning, error */
 Modal.confirm = (props: Props) => {
@@ -143,6 +124,26 @@ Modal.error = (props: Props) => {
 };
 
 export default Modal;
+
+/* ------------------ Modules ------------------ */
+const showModal = (props: Props) => {
+   const container = createContainerDom();
+   const root = createRoot(container);
+
+   return root.render(
+      <Modal
+         {...props}
+         onOk={() => {
+            props.onOk?.();
+            root.unmount();
+         }}
+         onCancel={() => {
+            props.onCancel?.();
+            root.unmount();
+         }}
+      />,
+   );
+};
 
 const createContainerDom = () => {
    const container = document.createElement('div');
